@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ORDERS</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 flex justify-center items-center h-screen">
+    <div class="bg-white shadow-lg rounded-lg p-6 w-96">
+        <h2 class="text-xl font-semibold mb-4">ORDERS</h2>
+        <div class="border-b pb-4 mb-4">
+            <p class="text-gray-700 font-medium">Product: <span id="product-name">T-shirt</span></p>
+            <p class="text-gray-700">Price: Rs<span id="price">500</span></p>
+            <p class="text-gray-700">Discount: <span id="discount">10%</span></p>
+            <p class="text-gray-700">Special Offer: Free Shipping</p>
+            <p class="text-gray-700">Quantity: <input type="number" id="quantity" value="1" min="1" class="w-16 border p-1"></p>
+        </div>
+        <p class="text-lg font-bold">Total Price: <span id="total-price">450</span></p>
+        <div class="mt-4 flex justify-between">
+            <button id="cancel-btn" class="bg-red-500 text-white px-4 py-2 rounded">Cancel Order</button>
+            <button id="payment-btn" class="bg-green-500 text-white px-4 py-2 rounded">Proceed to Payment</button>
+        </div>
+    </div>
+
+    <script>
+        const price = 500;
+        const discount = 0.10;
+        const quantityInput = document.getElementById("quantity");
+        const totalPriceElement = document.getElementById("total-price");
+
+        function updateTotalPrice() {
+            const quantity = parseInt(quantityInput.value);
+            const discountedPrice = price - (price * discount);
+            totalPriceElement.textContent = (discountedPrice * quantity).toFixed(2);
+        }
+        
+        quantityInput.addEventListener("input", updateTotalPrice);
+
+        document.getElementById("cancel-btn").addEventListener("click", () => {
+            alert("Order Cancelled!");
+        });
+
+        document.getElementById("payment-btn").addEventListener("click", () => {
+            alert("Proceeding to Payment...");
+        });
+    </script>
+</body>
+</html>
